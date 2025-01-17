@@ -3,27 +3,30 @@ import { useAppDispatch, useAppSelector } from "../hook";
 import { addItem, clearCart, removeItem } from "../lib/cartSlice";
 import { login, logout } from "../lib/userSlice";
 
-
 export default function Exam10() {
-  const user = useAppSelector(state => state.user);
+  const user = useAppSelector((state) => state.user);
+
+  const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-  const cart = useAppSelector(state => state.cart);
-  const dispatchCart = useAppDispatch();
-
   const [newItem, setNewItem] = useState({
-    id: '',
-    name: '',
+    id: "",
+    name: "",
     price: 0,
     quantity: 1,
   });
 
   const handleAddItem = () => {
-    if (newItem.id && newItem.name && newItem.price > 0 && newItem.quantity > 0) {
+    if (
+      newItem.id &&
+      newItem.name &&
+      newItem.price > 0 &&
+      newItem.quantity > 0
+    ) {
       dispatch(addItem(newItem));
-      setNewItem({ id: '', name: '', price: 0, quantity: 1 }); // Reset the form
+      setNewItem({ id: "", name: "", price: 0, quantity: 1 }); // Reset the form
     } else {
-      alert('Please fill out all fields correctly.');
+      alert("Please fill out all fields correctly.");
     }
   };
 
@@ -46,7 +49,9 @@ export default function Exam10() {
         ) : (
           <button
             onClick={() =>
-              dispatch(login({ id: '1', name: 'John Doe', email: 'john@example.com' }))
+              dispatch(
+                login({ id: "1", name: "John Doe", email: "john@example.com" })
+              )
             }
             className="px-4 py-2 bg-blue-500 text-white rounded"
           >
@@ -84,7 +89,9 @@ export default function Exam10() {
               type="number"
               placeholder="Price"
               value={newItem.price}
-              onChange={(e) => setNewItem({ ...newItem, price: Number(e.target.value) })}
+              onChange={(e) =>
+                setNewItem({ ...newItem, price: Number(e.target.value) })
+              }
               className="mr-2 p-2 border rounded"
             />
           </div>
@@ -94,12 +101,12 @@ export default function Exam10() {
               type="number"
               placeholder="Quantity"
               value={newItem.quantity}
-              onChange={(e) => setNewItem({ ...newItem, quantity: Number(e.target.value) })}
+              onChange={(e) =>
+                setNewItem({ ...newItem, quantity: Number(e.target.value) })
+              }
               className="mr-2 p-2 border rounded"
             />
           </div>
-
-
 
           <button
             onClick={handleAddItem}
@@ -113,9 +120,12 @@ export default function Exam10() {
           <div>
             <ul className="border border-black p-4">
               {cart.items.map((item) => (
-                <li key={item.id} className="flex justify-start gap-4 py-2 items-center border-b border-black">
+                <li
+                  key={item.id}
+                  className="flex justify-start gap-4 py-2 items-center border-b border-black"
+                >
                   <span>
-                    Item ID: {item.id} :  {item.name} (x{item.quantity})
+                    Item ID: {item.id} : {item.name} (x{item.quantity})
                   </span>
                   <button
                     onClick={() => dispatch(removeItem(item.id))}
