@@ -15,11 +15,11 @@ export default function Exam5() {
   useEffect(() => {
     const connectWebSocket = () => {
       // console.log("process: ", process.env.ws_URI);
-      console.log("jarim");
+      // console.log("jarim");
       socketRef.current = new WebSocket(
         "wss://node-ws-production.up.railway.app/"
       );
-      console.log("jarim 2");
+      // console.log("jarim 2");
 
       socketRef.current.onopen = () => {
         console.log("WebSocket connected");
@@ -49,7 +49,7 @@ export default function Exam5() {
     connectWebSocket();
 
     return () => {
-      console.log("eukaeuka");
+      // console.log("eukaeuka");
       socketRef.current?.close();
     };
   }, []);

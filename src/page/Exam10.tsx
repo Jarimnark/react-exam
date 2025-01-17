@@ -125,7 +125,8 @@ export default function Exam10() {
                   className="flex justify-start gap-4 py-2 items-center border-b border-black"
                 >
                   <span>
-                    Item ID: {item.id} : {item.name} (x{item.quantity})
+                    Item ID: {item.id} : {item.name} (x{item.quantity}) - unit
+                    Price: {item.price}
                   </span>
                   <button
                     onClick={() => dispatch(removeItem(item.id))}
